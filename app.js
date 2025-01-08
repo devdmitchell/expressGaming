@@ -1,6 +1,7 @@
 const express = require('express')
 const logger = require('morgan') 
-const indexRouter = require('./routes/indexRouter')
+const indexRouter = require(`./routes/indexRouter`)
+const gameRouter = require(`./routes/gameRouter`)
 
 const port = 3000
 
