@@ -42,16 +42,25 @@ let games = [
       router.post('/create-new-game', (req, res) => {
         const game = req.body.description
         const description = req.body.description
-        
+        if(game === undefined || description === undefined){
+            res.json({message: "cannot leave text area blank"})
+        }else if(games.find(element => element.game === game)){
+            res.json({message:"Game already exists, cannot add game"})
+        }else{
         const newGame = {
-          id: uuidv4(),
-          game: req.body.game,
-          description: req.body.description
+            id: uuidv4(),
+            game: req.body.game,
+            description: req.body.description
         }
-       games.push(newGame)
+        games.push(newGame)
         res.json({message:"Game added.", payload: games})
-      })
+         }})
     
+    
+    // const {game, description} = req.body   //destructuring
+    // // if(game || description)
+    // if(game === undefined || description === undefined || games.find(element => element.game === game))
+    //     res.json({game, description})
 
     
 module.exports = router
