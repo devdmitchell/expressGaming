@@ -88,5 +88,15 @@ let games = [
         }
     })
 
+    router.get('/get-game-by-name/:name', (req, res) => {
+        const gameName = req.params.name
+        const filteredGames = games.filter(game => game.game === gameName)
+        if (filteredGames.length === 0) {
+            res.json({message: "The game does not exist, please check name"})
+        }else{
+            res.json({message: "Game found", payload: filteredGames[0]})
+        }
+    })
+
     
 module.exports = router
